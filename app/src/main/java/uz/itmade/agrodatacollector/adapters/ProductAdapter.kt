@@ -50,7 +50,7 @@ class ProductAdapter: RecyclerView.Adapter<ProductAdapter.Holder>() {
             val item=data[adapterPosition]
             name.text=item.name
 
-            price.text = "$${item.price}"
+            price.text = "\uD83D\uDCB0${item.price} AgroCoin"
             Log.d("Image",item.imageUrl)
             Glide
                 .with(image)

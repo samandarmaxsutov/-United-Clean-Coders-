@@ -5,6 +5,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import com.google.firebase.firestore.DocumentSnapshot
 import uz.itmade.agrodatacollector.data.ImageData
+import uz.itmade.agrodatacollector.data.ProductData
 import uz.itmade.agrodatacollector.data.UserData
 
 object Mapper {
@@ -12,16 +13,23 @@ object Mapper {
         id = getString("id") ?: "",
         name = getString("name")?:"",
         phone = getString("phone")?:"",
-        agroCoin = getLong("agro_coin")?:0,
-        telegramUserId = getString("telegram_user_id")?:"",
+        agroCoin = getLong("agroCoin")?:0,
+        telegramUserId = getString("telegramUserId")?:"",
         password = getString("password")?:""
     )
     fun DocumentSnapshot.toImageData()=ImageData(
         id = getString("id") ?: "",
-        imageLink = getString("image_link")?:"",
+        imageLink = getString("imageLink")?:"",
         description = getString("description")?:"",
-        userId = getString("user_id")?:""
+        userId = getString("userId")?:""
     )
+    fun DocumentSnapshot.toProductData()=ProductData(
+        id = getString("id") ?: "",
+        name = getString("name")?:"",
+        price = getString("price")?:"",
+        imageUrl = getString("imageUrl")?:""
+    )
+
 
 }
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import uz.itmade.agrodatacollector.data.UserData
+import uz.itmade.agrodatacollector.model.Mapper.toUserData
 import java.lang.Exception
 
 
@@ -88,6 +89,34 @@ class GetUsersRepoImpl : GetUsersRepo {
         return liveData
     }
 
+    override fun updateAgroCoin(userId: String, coin: Int): LiveData<Result<Unit>> {
+        val liveData = MutableLiveData<Result<Unit>>()
+
+        // Fetch the current coin value, add the provided coin value, and then update Firestore
+        db.collection("users").document(userId).get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val currentCoin = document.getLong("agroCoin") ?: 0
+                    val newCoinValue = currentCoin + coin
+                    db.collection("users").document(userId).update("agroCoin", newCoinValue)
+                        .addOnSuccessListener {
+                            liveData.value = Result.success(Unit)
+                        }
+                        .addOnFailureListener { exception ->
+                            liveData.value = Result.failure(exception)
+                        }
+                } else {
+                    liveData.value = Result.failure(Exception("User not found"))
+                }
+            }
+            .addOnFailureListener { exception ->
+                liveData.value = Result.failure(exception)
+            }
+
+        return liveData
+    }
+
+
     override fun add(userData: UserData): LiveData<Result<Unit>> {
         val liveData = MutableLiveData<Result<Unit>>()
         Log.d("AddUser", "Failed to add user:")
@@ -102,5 +131,31 @@ class GetUsersRepoImpl : GetUsersRepo {
             }
 
         return liveData
+    }
+
+    fun _get(id: String): LiveData<Result<UserData>> {
+
+        progressBar.value=true
+        val liveData = MutableLiveData<Result<UserData>>()
+        db.collection("users")
+            .document(id).get().addOnSuccessListener{
+
+                liveData.value = Result.success(it.toUserData())
+            }
+            .addOnFailureListener { liveData.value = Result.failure(it) }
+
+        return liveData
+    }
+    override fun get(id: String): LiveData<Result<UserData>> {
+        progressBar.value=true
+        val liveData = MediatorLiveData<Result<UserData>>()
+        liveData.addDisposable(_get(id)) { liveData.value = it }
+
+        db.collection("users").addSnapshotListener { snapshot, e ->
+            liveData.addDisposable(_get(id)) { liveData.value = it }
+        }
+
+        return liveData
+
     }
 }

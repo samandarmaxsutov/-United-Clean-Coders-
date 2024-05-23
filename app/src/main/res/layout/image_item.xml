@@ -10,17 +10,19 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        >
 
         <!-- ImageView to display the image -->
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerCrop" />
+            android:scaleType="fitXY"
+             />
 
         <!-- TextView to display the image title or description -->
         <TextView
+            android:visibility="gone"
             android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

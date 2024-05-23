@@ -45,6 +45,7 @@ class ImageAdapter : RecyclerView.Adapter<ImageAdapter.Holder>() {
             val item=data[adapterPosition]
 
             text.text=item.description
+            Log.d("Image",item.imageLink)
             Glide
                 .with(image)
                 .load(item.imageLink)

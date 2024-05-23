@@ -11,5 +11,7 @@ interface GetUsersRepo {
     fun getAll2(collectionName:String): LiveData<Result<List<UserData>>>
     fun findUser(collectionName:String,phone:String, password:String): LiveData<Result<UserData>>
     fun update(userData: UserData,collectionName: String): LiveData<Result<Unit>>
+    fun updateAgroCoin(userId:String,coin:Int): LiveData<Result<Unit>>
     fun add(userData: UserData):LiveData<Result<Unit>>
+    fun get(id:String):LiveData<Result<UserData>>
 }

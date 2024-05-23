@@ -54,5 +54,16 @@
         android:layout_below="@id/editTextDescription"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp" />
+    <ProgressBar
 
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+
+        android:visibility="visible"
+        android:padding="16dp"
+        android:background="@drawable/button_selector_white"
+
+        />
 </RelativeLayout>

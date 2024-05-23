@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
@@ -27,6 +28,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import uz.itmade.agrodatacollector.R
 import uz.itmade.agrodatacollector.data.ImageData
+import uz.itmade.agrodatacollector.data.UserData
 import uz.itmade.agrodatacollector.databinding.FragmentDashboardBinding
 import uz.itmade.agrodatacollector.model.Repository
 import uz.itmade.agrodatacollector.model.RepositorySignIn
@@ -39,6 +41,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     private lateinit var description: EditText
     private lateinit var addImage: TextView
     private lateinit var submit: TextView
+    private lateinit var progressBar: ProgressBar
     private lateinit var selectedImageView: ImageView
     private val repository = RepositorySignIn.getInstance()
     private val PICK_IMAGE_REQUEST = 1
@@ -60,7 +63,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
         // Initialize Firebase Storage reference
         storageReference = FirebaseStorage.getInstance().reference
-
+        progressBar = view.findViewById(R.id.progressBar)
 
         addImage.setOnClickListener {
             openFileChooser()
@@ -78,9 +81,16 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
 
 
+            progressBar.visibility=View.VISIBLE
+            submit.isClickable=false
+            addImage.isClickable=false
             uploadImageToFirebase(imageUri) { uploadedImageUrl ->
+
                 val image = ImageData(imageLink = uploadedImageUrl, description=description.text.toString(), userId = repository.getPhone().toString())
                 Repository.getImageRepo.add(image).observe(viewLifecycleOwner){
+                    submit.isClickable=true
+                    addImage.isClickable=true
+                    progressBar.visibility=View.GONE
                     if (it.isSuccess) {
 
                         withIcon(description.text.toString()+" qo'shildi ",requireActivity())
@@ -92,8 +102,10 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                     }
                 }
 
-
             }
+
+
+            Repository.getUserRepo.updateAgroCoin(RepositorySignIn.getInstance().getPhone(),2)
 
         }
     }
