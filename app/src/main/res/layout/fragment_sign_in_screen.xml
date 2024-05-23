@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/bg_color"
+    android:padding="16dp">
+    <ProgressBar
+
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+
+        android:visibility="gone" />
+
+    <TextView
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textSize="30sp"
+        android:layout_marginBottom="30sp"
+        android:paddingVertical="30dp"
+        android:textStyle="bold"
+        />
+
+
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_edit"
+        android:paddingVertical="16sp"
+        android:paddingHorizontal="8sp"
+        android:id="@+id/editTextPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Telefon raqam"
+        android:inputType="phone" />
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_edit"
+        android:paddingVertical="16sp"
+        android:paddingHorizontal="8sp"
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Parol"
+        android:inputType="text" />
+
+    <TextView
+        android:textStyle="bold"
+        android:textColor="@color/bg_color"
+        android:clickable="true"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="8dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_selector_white"
+        android:id="@+id/buttonLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login" />
+    <TextView
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:clickable="true"
+        android:gravity="center"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="8dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_selector"
+        android:id="@+id/buttonRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ro_yxatdan_o_tish" />
+
+</LinearLayout>

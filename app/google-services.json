@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "780871903186",
+    "project_id": "united-clean-coders",
+    "storage_bucket": "united-clean-coders.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780871903186:android:de79ab6fb2bcdae5140a0b",
+        "android_client_info": {
+          "package_name": "uz.itmade.agrodatacollector"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9-ck-5MvJgfvh25mUWZhQeeX0BwJh0VM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

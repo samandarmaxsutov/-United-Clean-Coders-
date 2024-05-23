@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AgroData Collector</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="ro_yxatdan_o_tish">Ro‘yxatdan o‘tish</string>
+    <string name="market">Market</string>
+    <string name="ma_lumot_qo_shish">Ma\'lumot qo\'shish</string>
+    <string name="asosiy_oyna">Asosiy oyna</string>
+</resources>
